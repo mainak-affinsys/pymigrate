@@ -116,7 +116,9 @@ where:
 7 directories, 25 files
 ```
 
+
 <h4>Working</h4>
+
 The File main.py acts as the entry point. The commands and CLI is processed
 using the `Typer` library. The processed path is then passed to the `parser.parser` file function to
 be processed into a `JSON` obj or a python `dict` object.
