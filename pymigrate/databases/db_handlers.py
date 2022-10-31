@@ -44,6 +44,13 @@ def handler(dbms, source, destination, rules):
                     i = str(i).split(".")[1]
                     if i not in sel:
                         t._columns.remove(t._columns[i])
+            if t.name in rules and "no_select" in rules.get(t.name):
+                sel = rules.get(t.name).pop("no_select")
+                sel = sel.pop("columns")
+                for i in t._columns:
+                    i = str(i).split(".")[1]
+                    if i in sel:
+                        t._columns.remove(t._columns[i])
         except Exception as e:
             print(e)
         print(t._columns)

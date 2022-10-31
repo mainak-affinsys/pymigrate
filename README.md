@@ -44,6 +44,30 @@ rules: # (OPTIONAL) The transformation rules for the data, can be defined to get
     # Example: Only get Accounts[TABLE] which have last_accessed[COLUMN] within 3years[QUERY]
 ```
 
+<h4>SELECT</h4>
+The Select query rule allows to select specific
+columns from a database. The columns specified are
+the ones which should be selected.
+
+```yaml
+select:
+  columns:
+    - "id"
+    - "name"
+    - "date"
+```
+
+No-select allows us to select which columns we want
+excluded from the imported tabNo-select allows us to select which columns we want
+excluded from the imported table.
+
+```yaml
+no_select:
+  columns:
+    - "date"
+```
+
+<h4>WHERE</h4>
 We have 3 options with the Where clause
 - either use a singular query with multiple clauses joined by and/or, like
 ```yaml
