@@ -1,0 +1,6 @@
+dbconfig.yaml
+.gitconfig
+*.spec
+*.zip
+build/
+dist/

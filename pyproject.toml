@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "pymigrate"
+version = "0.1.0"
+description = ""
+authors = ["cool-pants <muban.sg@Gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+ruamel-yaml = "^0.17.21"
+typer = {extras = ["all"], version = "^0.6.1"}
+wheel = "^0.37.1"
+lock = "^2018.3.25.2110"
+psycopg2-binary = "^2.9.5"
+sqlalchemy = "^1.4.42"
+sqlacodegen = "^2.3.0"
+mysqlclient = "^2.1.1"
+pymysql = "^1.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
