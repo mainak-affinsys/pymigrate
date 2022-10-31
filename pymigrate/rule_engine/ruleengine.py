@@ -12,15 +12,18 @@ class RuleEngine:
     @staticmethod
     def get_wrapper(d):
         if "and" in d:
-            return and_, d.pop('and')
+            return and_, d.pop("and")
         if "or" in d:
-            return or_, d.pop('or')
+            return or_, d.pop("or")
         return None, d
 
     # Parses the parameterized yaml data and returns a string command/query
     def parse_command(self, comm):
-        col, op, value = ".".join([self.table.name, comm.get('column')]), \
-                         comm.get('operator'), comm.get('value')
+        col, op, value = (
+            ".".join([self.table.name, comm.get("column")]),
+            comm.get("operator"),
+            comm.get("value"),
+        )
 
         return f"{col} {op} '{value}'"
 
@@ -28,15 +31,15 @@ class RuleEngine:
     def iterate_where(self, rule_set):
         l = []
         for rule in rule_set:
-            if 'and' in rule or 'or' in rule:
+            if "and" in rule or "or" in rule:
                 wrp, r = self.get_wrapper(rule)
                 ans = self.iterate_where(r)
                 l.append(wrp(*ans))
                 continue
 
-            if 'query' in rule:
+            if "query" in rule:
                 try:
-                    l.append(text(rule.get('query')))
+                    l.append(text(rule.get("query")))
                 except Exception as e:
                     print(e)
                 continue
@@ -45,7 +48,7 @@ class RuleEngine:
 
     # Main generator function for the where clauses
     def generate_where_clause(self):
-        wrp, self.rules = self.get_wrapper(self.rules.get('where'))
+        wrp, self.rules = self.get_wrapper(self.rules.get("where"))
 
         if wrp is None:
             return self.parse_command(text(self.rules[0]))
@@ -57,7 +60,6 @@ class RuleEngine:
     # Gets the base query for execution, parses the ruleset and returns a query function which can be called
     # with table object as argument
     def get_base(self):
-
         def where(table):
             clauses = None
             try:
@@ -68,16 +70,15 @@ class RuleEngine:
             return select(*table.columns).where(clauses)
 
         def count_group(table):
-            self.rules = self.rules.get('count')
-            col = self.rules.get('column')
-            pk = self.rules.get('primary_key', 'id')
-            label = self.rules.get('label', 'count')
-            return select(table.c[col], func.count(table.c[pk]).label(label)).group_by(table.c[col])
+            self.rules = self.rules.get("count")
+            col = self.rules.get("column")
+            pk = self.rules.get("primary_key", "id")
+            label = self.rules.get("label", "count")
+            return select(table.c[col], func.count(table.c[pk]).label(label)).group_by(
+                table.c[col]
+            )
 
-        function_rule_set = {
-            "where": where,
-            "count": count_group
-        }
+        function_rule_set = {"where": where, "count": count_group}
 
         return function_rule_set[gfk(self.rules)]
 
@@ -88,4 +89,5 @@ class RuleEngine:
             return dat
         except Exception as e:
             print(e)
+
     pass

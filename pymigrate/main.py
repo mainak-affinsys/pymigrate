@@ -3,13 +3,14 @@ import typer
 from parser.parser import parse_yaml_from_path
 from databases.database_abstraction import start_migration
 
+
 def main(
-        path:str = typer.Option("./dbconfig.yaml", help="/the/path/to/your/dbconfig.yaml")
+    path: str = typer.Option("./dbconfig.yaml", help="/the/path/to/your/dbconfig.yaml")
 ):
     data = parse_yaml_from_path(path)
-    source = data.pop('source')
-    destination = data.pop('destination')
-    rules = data.pop('rules')
+    source = data.pop("source")
+    destination = data.pop("destination")
+    rules = data.pop("rules")
     try:
         start_migration(source, destination, rules)
     except Exception:
@@ -19,4 +20,3 @@ def main(
 
 if __name__ == "__main__":
     typer.run(main)
-
