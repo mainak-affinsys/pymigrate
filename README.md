@@ -89,6 +89,7 @@ where:
 ### Understanding code
 
 <h4>Directory Structure:<h4>
+  
 ```bash
 ├── LICENSE
 ├── poetry.lock
