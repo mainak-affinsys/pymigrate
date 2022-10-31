@@ -160,3 +160,20 @@ project is poetry. Thus, we need poetry as one of the primary dependencies.
 >> poetry install
 ```
 - Run the script using the first command.
+
+<h4>Working</h4>
+Sample `dbcomfig.yaml`
+<img src="https://raw.githubusercontent.com/mainak-affinsys/pymigrate/main/staticfiles/sample_yaml.png"/>
+
+The source and destination db before running script
+
+SOURCE
+<img src="https://raw.githubusercontent.com/mainak-affinsys/pymigrate/main/staticfiles/source.png"/>
+
+DESTINATION
+<img src="https://raw.githubusercontent.com/mainak-affinsys/pymigrate/main/staticfiles/empty_dest.png"/>
+
+POST SCRIPT
+<img src="https://raw.githubusercontent.com/mainak-affinsys/pymigrate/main/staticfiles/command.png"/>
+<img src="https://raw.githubusercontent.com/mainak-affinsys/pymigrate/main/staticfiles/destination.png"/>
+
