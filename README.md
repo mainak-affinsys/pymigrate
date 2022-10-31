@@ -89,43 +89,31 @@ where:
 ### Understanding code
 
 <h4>Directory Structure:<h4>
-```
-pymigrate
-│   README.md
-│   poetry.lock
-│   pyproject.toml
-│   dbconfig.yaml
-│
-└───pymigrate
-    │   __init__.py
-    │   main.py
-    │
-    └───parser
-    │   │   __init__.py
-    │   │   parser.py
-    │   │
-    │   └────
-    │   
-    └───rule_engine
-    │   │   __init__.py
-    │   │   rule_handler.py
-    │   │   ruleengine.py
-    │   │
-    │   └────
-    │   
-    └───utils
-    │   │   __init__.py
-    │   │   utils.py
-    │   │
-    │   └────
-    │   
-    └───databases
-        │   __init__.py
-        │   database_abstraction.py
-        │   db_handlers.py
-        │   utils.py
-        │
-        └────   
+```bash
+├── LICENSE
+├── poetry.lock
+├── .gitignore
+├── pymigrate
+│   ├── databases
+│   │   ├── database_abstraction.py
+│   │   ├── db_handlers.py
+│   │   └── __init__.py
+│   ├── __init__.py
+│   ├── main.py
+│   ├── parser
+│   │   ├── __init__.py
+│   │   └── parser.py
+│   ├── rule_engine
+│   │   ├── __init__.py
+│   │   ├── ruleengine.py
+│   │   └── rule_handler.py
+│   └── utils
+│       ├── __init__.py
+│       └── utils.py
+├── pyproject.toml
+└── README.md
+
+7 directories, 25 files
 ```
 
 <h4>Working</h4>
@@ -168,4 +156,4 @@ project is poetry. Thus, we need poetry as one of the primary dependencies.
 >> poetry env use $(which python3)
 >> poetry install
 ```
-- Run the script using the first command
+- Run the script using the first command.

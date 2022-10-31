@@ -4,3 +4,4 @@ dbconfig.yaml
 *.zip
 build/
 dist/
+__pycache__/
