@@ -168,12 +168,16 @@ Sample `dbcomfig.yaml`
 The source and destination db before running script
 
 SOURCE
+
 <img src="https://raw.githubusercontent.com/mainak-affinsys/pymigrate/main/staticfiles/source.png"/>
 
 DESTINATION
+
 <img src="https://raw.githubusercontent.com/mainak-affinsys/pymigrate/main/staticfiles/empty_dest.png"/>
 
 POST SCRIPT
+
 <img src="https://raw.githubusercontent.com/mainak-affinsys/pymigrate/main/staticfiles/command.png"/>
+
 <img src="https://raw.githubusercontent.com/mainak-affinsys/pymigrate/main/staticfiles/destination.png"/>
 
