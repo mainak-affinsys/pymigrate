@@ -24,6 +24,20 @@ def get_uri(dbms, data):
     raise Exception("Database not supported")
 
 
+def select_modifier(rules, t, type_sel):
+    sel = rules.get(t.name).pop(type_sel)
+    sel = sel.pop("columns")
+    for i in t._columns:
+        i = str(i).split(".")[1]
+        if type_sel == "select":
+            if i not in sel:
+                t._columns.remove(t._columns[i])
+        elif type_sel == "no_select":
+            if i in sel:
+                t._columns.remove(t._columns[i])
+    return t._columns
+
+
 def handler(dbms, source, destination, rules):
     source_uri = source.get("connection_string", get_uri(dbms, source))
     destination_uri = destination.get(
@@ -38,22 +52,11 @@ def handler(dbms, source, destination, rules):
         t = meta.tables[table]
         try:
             if t.name in rules and "select" in rules.get(t.name):
-                sel = rules.get(t.name).pop("select")
-                sel = sel.pop("columns")
-                for i in t._columns:
-                    i = str(i).split(".")[1]
-                    if i not in sel:
-                        t._columns.remove(t._columns[i])
+                t._columns = select_modifier(rules, t, "select")
             if t.name in rules and "no_select" in rules.get(t.name):
-                sel = rules.get(t.name).pop("no_select")
-                sel = sel.pop("columns")
-                for i in t._columns:
-                    i = str(i).split(".")[1]
-                    if i in sel:
-                        t._columns.remove(t._columns[i])
+                t._columns = select_modifier(rules, t, "no_select")
         except Exception as e:
             print(e)
-        print(t._columns)
     tables: list[Table] = [meta.tables[table] for table in meta.tables]
 
     data = get_data(source_engine, tables, rules)
